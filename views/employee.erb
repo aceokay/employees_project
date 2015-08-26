@@ -1,8 +1,13 @@
 <h2>Employee: <%= @employee.name() %></h2>
 <hr>
 
-<% if @project %>
-  <h3> Currently working on: <%= @project.name %> </h3>
+<% if @projects %>
+  <h3> Currently working on: </h3>
+  <ul>
+    <% @projects.each() do |project| %>
+      <li><%= project.name %></li>
+    <% end %>
+  </ul>
 
 <% else %>
     <p><strong>Employee has not yet been assigned to a project.</strong></p>
@@ -17,7 +22,7 @@
   <label for="project_select">Select the Project:  </label>
     <br>
   <select id="project_id" name="project_id">
-    <% @projects.each() do |project| %>
+    <% @projects_all.each() do |project| %>
       <option value="<%= project.id() %>"><%= project.name() %></option>
     <% end %>
   </select>

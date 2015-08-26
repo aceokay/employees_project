@@ -11,6 +11,17 @@ require('./app')
 
 Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
 
-get("/") do
-  erb(:index)
+
+RSpec.configure do |config|
+ config.after(:each) do
+   Employee.all().each() do |employee|
+     employee.destroy()
+   end
+   Project.all.each do |project|
+     project.destroy
+   end
+   Assignment.all.each do |assign|
+     assign.destroy
+   end
+ end
 end

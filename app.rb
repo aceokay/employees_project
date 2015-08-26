@@ -32,12 +32,17 @@ end
 
 get("/employees/:id") do
   @employee = Employee.find(params.fetch("id").to_i())
-  if @employee.project_id
-    @project = Project.find(@employee.project_id)
+  @projects = @employee.projects()
+  if @projects
+
+    # assignments.each do |assignment|
+    # @projects.push(Project.find(assignment.project_id())
+  # if @employee.project_id
+  #   @project = Project.find(@employee.project_id)
   else
     @project = nil
   end
-  @projects = Project.all
+  @projects_all = Project.all
   erb(:employee)
 end
 
